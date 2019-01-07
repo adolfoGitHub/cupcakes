@@ -14,10 +14,13 @@ error_reporting(E_ALL);
 //variables
 $flavors = array();
 $name = "";
+$num = 0;
 //make form sticky
 if(!empty($_POST)){
   $name =  $_POST['name'];
   $flavors = $_POST['flavor'];
+  //count variable
+  $num = count($flavors);
 }
 ?>
 <!doctype html>
@@ -51,7 +54,7 @@ $cupcakes = array("grasshoper"=>"The Grasshopper", "maple"=>"Whiskey Maple Bacon
             echo "><label>$value</label><br/>";
         }
     ?>
-    <input type="submit" name="submit" value="Submit Order"/><br/>
+    <input type="submit" name="submit" value="Submit"/><br/>
 </form>
 
 </body>
