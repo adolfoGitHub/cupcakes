@@ -10,6 +10,15 @@
 //Turn on error reporting
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
+
+//variables
+$flavors = array();
+$name = "";
+//make form sticky
+if(!empty($_POST)){
+  $name =  $_POST['name'];
+  $flavors = $_POST['flavor'];
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -21,18 +30,27 @@ error_reporting(E_ALL);
     <title>Cupcake Assignment</title>
 </head>
 <body>
+<?php
+//array to hold cupcake options
+$cupcakes = array("grasshoper"=>"The Grasshopper", "maple"=>"Whiskey Maple Bacon",
+                    "carrot"=>"Carrot Walnut", "caramel"=>"Salted Caramel Cupcake",
+                    "velvet"=>"Red Velvet", "lemon"=>"Lemon Drop", "tiramisu"=>"Tiramisu");
+
+?>
 <h1>Place your cupcake order here.</h1>
 <p>Each pancake is $3.50. Chose one or more.</p>
-
-<form action="summary.php" method="post">
-    <label>Name: </label><input type="text" name="name" id="name" placeholder="first name"><br/>
-    <input checked="checked" type="checkbox" name="flavors[]" value="grasshoper"><label>The Grasshopper</label><br/>
-    <input type="checkbox" name="flavors[]" value="maple"><label>Whiskey Maple Bacon</label><br/>
-    <input type="checkbox" name="flavors[]" value="carrot"><label>Carrot Walnut</label><br/>
-    <input type="checkbox" name="flavors[]" value="caramel"><label>Salted Caramel Cupcake</label><br/>
-    <input type="checkbox" name="flavors[]" value="velvet"><label>Red Velvet</label><br/>
-    <input type="checkbox" name="flavors[]" value="lemon"><label>Lemon Drop</label><br/>
-    <input type="checkbox" name="flavors[]" value="tiramisu"><label>Tiramisu</label><br/>
+<form action="" method="post">
+    <label>Name: </label><input type="text" name="name" id="name"<?php echo "value='$name'";?> placeholder="first name"><br/>
+    <?php
+        foreach($cupcakes as $key => $value ){
+            echo "<input type='checkbox' name='flavor[]' value='$value'";
+            if(in_array($value, $flavors))
+            {
+                echo "checked='checked'";
+            }
+            echo "><label>$value</label><br/>";
+        }
+    ?>
     <input type="submit" name="submit" value="Submit Order"/><br/>
 </form>
 
