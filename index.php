@@ -11,17 +11,7 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-//variables
-$flavors = array();
-$name = "";
-$num = 0;
-//make form sticky
-if(!empty($_POST)){
-  $name =  $_POST['name'];
-  $flavors = $_POST['flavor'];
-  //count variable
-  $num = count($flavors);
-}
+require('summary.php');
 ?>
 <!doctype html>
 <html lang="en">
@@ -41,8 +31,8 @@ $cupcakes = array("grasshoper"=>"The Grasshopper", "maple"=>"Whiskey Maple Bacon
 
 ?>
 <h1>Place your cupcake order here.</h1>
-<p>Each pancake is $3.50. Chose one or more.</p>
-<form action="" method="post">
+<p>Each cupcake is $3.50. Chose one or more.</p>
+<form action="summary.php" method="post">
     <label>Name: </label><input type="text" name="name" id="name"<?php echo "value='$name'";?> placeholder="first name"><br/>
     <?php
         foreach($cupcakes as $key => $value ){
@@ -56,6 +46,7 @@ $cupcakes = array("grasshoper"=>"The Grasshopper", "maple"=>"Whiskey Maple Bacon
     ?>
     <input type="submit" name="submit" value="Submit"/><br/>
 </form>
+
 
 </body>
 </html>
