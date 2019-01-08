@@ -31,33 +31,34 @@
         $total = 0;
 
         //make form sticky
-        if(!empty($_POST)){
-            $name =  $_POST['name'];
+        if(!empty($_POST)) {
+            $name = $_POST['name'];
             $flavors = $_POST['flavor'];
-            $cupcakes = count($flavors );
-        }
+            $cupcakes = count($flavors);
 
-        //check first name
-        if (empty($name)){
-            echo "alert(Please provide a first name)";
-            $isValid =  false;
-        }
 
-        if($cupcakes < 1){
-            echo "alert(Please select at least 1 cupcake flavor)";
-            $isValid = false;
-        }
+            //check first name
+            if (empty($name)) {
+                echo "Please provide a first name";
+                $isValid = false;
+            }
 
-        //if data is valid display summary
-        if ($isValid){
-            echo "<p>Thank you, $name, for your order!<br/><br/>";
-            echo "Order Summary: <br/>";
-            echo "<ul>";
-            echo '<li>' . implode( '</li><li>', $flavors) . '</li>';
-            echo "</ul><br/><br/>";
-            $total = ($cupcakes * 3.50);
-            echo "Order Total: $".number_format($total, 2);
+            if ($cupcakes < 1) {
+                echo "Please select at least 1 cupcake flavor";
+                $isValid = false;
+            }
 
+            //if data is valid display summary
+            if ($isValid) {
+                echo "<p>Thank you, $name, for your order!<br/><br/>";
+                echo "Order Summary: <br/>";
+                echo "<ul>";
+                echo '<li>' . implode('</li><li>', $flavors) . '</li>';
+                echo "</ul><br/><br/>";
+                $total = ($cupcakes * 3.50);
+                echo "Order Total: $" . number_format($total, 2);//output total with 2 decimals
+
+            }
         }
         ?>
 
